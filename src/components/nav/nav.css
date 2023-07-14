@@ -1,0 +1,41 @@
+@keyframes show {
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes loading {
+  100% {
+    transform: translateX(-250%);
+  }
+}
+#container_nav {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+}
+#container_nav picture img {
+  width: 30px;
+  height: 30px;
+}
+#container_nav #container_icon, #container_nav nav {
+  width: 25%;
+  display: flex;
+  align-items: center;
+}
+#container_nav nav {
+  justify-content: end;
+}
+#container_nav nav a {
+  margin-right: 3%;
+}
+#container_nav nav a:hover {
+  background: #ffc400;
+}
+
+/*# sourceMappingURL=nav.css.map */

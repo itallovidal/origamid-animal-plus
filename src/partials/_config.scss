@@ -1,0 +1,40 @@
+$fonte-1: 'Cardo', serif;;
+//$fonte-2: 'Roboto Slab', serif;
+
+$font-tamanho-xgplus: 12.5rem; // 200
+$font-tamanho-xxgg: 8rem; // 128
+$font-tamanho-xxg: 6rem; // 96
+$font-tamanho-xg: 4.5rem; // 72
+$font-tamanho-g: 3rem; // 48
+$font-tamanho-m: 2rem; // 32
+$font-tamanho-p: 1.5rem; // 24
+$font-tamanho-pp: 1rem; // 16
+
+$cor-1: #ffc400;
+$cor-2: #1E1E1E;
+$cor-3: #F0F0F0;
+
+$esp-xxg: 15%;
+$esp-xg: 12%;
+$esp-g: 8%;
+$esp-m: 5%;
+$esp-p: 3%;
+$esp-pp: 1.5%;
+
+$largura-total: min(100%, 1200px);
+
+@keyframes show {
+  50%{
+    transform: translateY(0);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loading {
+  100%{
+    transform: translateX(-250%);
+  }
+}

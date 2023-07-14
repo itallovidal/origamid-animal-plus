@@ -1,0 +1,131 @@
+@keyframes show {
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes loading {
+  100% {
+    transform: translateX(-250%);
+  }
+}
+#post {
+  position: fixed;
+  top: calc(50% + 20px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 50vh;
+  z-index: 10;
+  animation: show-post 200ms forwards;
+  opacity: 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+#post #post_body {
+  background: white;
+  display: flex;
+  padding: 8%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#post #post_body #post_dados_postagem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#post #post_body #post_dados_postagem #post_autor:before {
+  content: "@";
+}
+#post #post_body #post_animal_dados {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 8%;
+}
+#post #post_body #post_animal_dados h1 {
+  width: 100%;
+  font-family: "Cardo", serif;
+  font-size: 3rem;
+  margin-block: 10px;
+  position: relative;
+  z-index: 2;
+}
+#post #post_body #post_animal_dados h1:before {
+  position: absolute;
+  content: "";
+  left: -10px;
+  bottom: 5px;
+  width: 70px;
+  height: 20px;
+  z-index: -1;
+  background: #ffc400;
+  border-radius: 3px;
+}
+#post #post_body #post_animal_dados #espacador {
+  margin-inline: 5%;
+}
+#post #post_body #container_comentarios {
+  width: 100%;
+  height: 300px;
+  overflow-y: scroll;
+}
+#post #post_body #container_comentarios p {
+  margin-bottom: 3%;
+}
+#post #post_body #container_comentarios p .autor_comentario {
+  font-weight: bolder;
+}
+#post #post_body #container_input {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 5%;
+}
+#post #post_body #container_input #btn_submit {
+  width: 18%;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+#post #post_body #container_input #btn_submit img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+#post #post_body #container_input textarea {
+  width: 80%;
+  outline: none;
+  padding: 3%;
+}
+
+@keyframes show-post {
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
+}
+@keyframes show-shadow-post {
+  100% {
+    opacity: 1;
+  }
+}
+#post:before {
+  animation: show-shadow-post 300ms 200ms forwards;
+  opacity: 0;
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  content: "";
+  top: -50%;
+  left: -50%;
+  background: rgba(0, 0, 0, 0.32);
+  z-index: -1;
+}
+
+/*# sourceMappingURL=modalPostagem.css.map */
