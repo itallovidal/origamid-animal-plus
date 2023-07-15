@@ -1,15 +1,12 @@
 import React from 'react';
 import CardPostagem from "./cardPostagem.jsx";
 
-function ContainerPostagens() {
+function ContainerPostagens({posts}) {
     return (
         <article>
-            <CardPostagem/>
-            <CardPostagem/>
-            <CardPostagem/>
-            <CardPostagem/>
-            <CardPostagem/>
-            <CardPostagem/>
+            {
+                posts.map(post => <CardPostagem key={post.id} dados={post}/>)
+            }
         </article>
     );
 }

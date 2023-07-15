@@ -1,13 +1,13 @@
 import React from "react";
 import {GlobalStorage} from "../../../App.jsx";
 
-function CardPostagem() {
-    const setModal = React.useContext(GlobalStorage)
+function CardPostagem({dados}) {
+    const global = React.useContext(GlobalStorage)
 
     return (
-        <picture onClick={()=> setModal((prev)=>!prev)} className={'card_post'}>
-            <img src="./placeholder.png" alt=""/>
-            <p> <span className={'watched'}>100</span> <i className="fa-solid fa-eye"></i> </p>
+        <picture onClick={()=> global.setModal(dados)} className={'card_post'}>
+            <img src={dados.src} alt={dados.title}/>
+            <p> <span className={'watched'}>{dados.acessos}</span> <i className="fa-solid fa-eye"></i> </p>
         </picture>
     );
 }

@@ -67,7 +67,11 @@
     }
 
     picture:hover p{
+      background: $cor-1;
+      padding: $esp-p;
+      border-radius: 8px;
       top: 50%;
+      cursor: pointer;
     }
   }
 }
