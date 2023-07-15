@@ -26,7 +26,8 @@ picture img {
 }
 
 main {
-  margin-top: 3%;
+  margin-top: 100px;
+  padding-top: 30px;
   opacity: 0;
   transform: translateY(30px);
   animation: showing 500ms forwards;

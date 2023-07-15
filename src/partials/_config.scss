@@ -38,3 +38,34 @@ $largura-total: min(100%, 1200px);
     transform: translateX(-250%);
   }
 }
+
+@mixin detalhe_amarelo($largura: 70px){
+  position: absolute;
+  content: '';
+  left: -0.5rem;
+  bottom: 0.5rem;
+  width: $largura;
+  height: 20px;
+  z-index: -1;
+  background: $cor-1;
+  border-radius: 3px;
+}
+
+.btn{
+  background: $cor-1;
+  padding: 2%;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  cursor: pointer;
+  transition: 300ms;
+
+  @media (max-width: 700px) {
+    padding: 5%;
+  }
+}
+
+.btn:hover{
+  transform: translateY(-5px);
+}

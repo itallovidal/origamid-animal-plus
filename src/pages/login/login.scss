@@ -1,0 +1,77 @@
+@use '../../partials/_config' as *;
+
+#container_cadastro{
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 100px);
+
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    height: initial;
+
+    h1, .btn, form{
+      margin-bottom: $esp-xg !important;
+    }
+  }
+
+  h1,h3{
+    font-size: $font-tamanho-xg;
+    font-family: $fonte-1;
+    position: relative;
+    margin-bottom: $esp-pp;
+
+  }
+
+  h1:before{
+    @include detalhe_amarelo(30px)
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $esp-m;
+    position: relative;
+
+    a{
+      margin-top: $esp-p;
+      padding: 0;
+    }
+
+    a span{
+      transition: 200ms;
+    }
+
+    a:hover span{
+      font-weight: bold;
+      border-bottom: 2px solid $cor-1;
+    }
+  }
+
+  form:after {
+    position: absolute;
+    content: '';
+    bottom: calc(($esp-m) * -1);
+    left: 0;
+    width: 100px;
+    height: 5px;
+    background: $cor-3;
+    border-radius: 8px;
+  }
+
+  h3{
+    font-size: $font-tamanho-g;
+    margin-bottom: $esp-pp;
+  }
+
+  .cadastro.btn{
+    display: block;
+    width: fit-content;
+    margin-top: $esp-p;
+
+    @media (max-width: 700px) {
+      margin-bottom: $esp-g;
+    }
+  }
+}

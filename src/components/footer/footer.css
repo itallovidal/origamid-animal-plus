@@ -1,0 +1,53 @@
+@keyframes show {
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes loading {
+  100% {
+    transform: translateX(-250%);
+  }
+}
+.btn {
+  background: #ffc400;
+  padding: 2%;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  cursor: pointer;
+  transition: 300ms;
+}
+@media (max-width: 700px) {
+  .btn {
+    padding: 5%;
+  }
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+}
+
+footer {
+  width: 100%;
+  height: 20vh;
+  background: #ffc400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+footer h3 {
+  opacity: 0.3;
+}
+footer picture img {
+  height: 60px;
+  width: 60px;
+}
+
+/*# sourceMappingURL=footer.css.map */

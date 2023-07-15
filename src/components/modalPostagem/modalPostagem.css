@@ -12,18 +12,55 @@
     transform: translateX(-250%);
   }
 }
-#post {
+.btn {
+  background: #ffc400;
+  padding: 2%;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  cursor: pointer;
+  transition: 300ms;
+}
+@media (max-width: 700px) {
+  .btn {
+    padding: 5%;
+  }
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+}
+
+#modal {
   position: fixed;
-  top: calc(50% + 20px);
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 50vh;
+  top: 0;
+  left: 0;
   z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.27);
+  display: grid;
+  place-items: center;
+  opacity: 0;
   animation: show-post 200ms forwards;
+}
+
+#post {
+  width: 50%;
+  height: 50%;
+  animation: show-post 200ms forwards;
+  transform: scale(0.9);
   opacity: 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
+}
+@media (max-width: 700px) {
+  #post {
+    width: 90%;
+    grid-template-columns: 1fr;
+    height: fit-content;
+  }
 }
 #post #post_body {
   background: white;
@@ -40,6 +77,14 @@
 }
 #post #post_body #post_dados_postagem #post_autor:before {
   content: "@";
+}
+#post #post_body #post_dados_postagem #btn_close {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 300ms;
+}
+#post #post_body #post_dados_postagem #btn_close:hover {
+  color: #ffc400;
 }
 #post #post_body #post_animal_dados {
   display: flex;
@@ -58,8 +103,8 @@
 #post #post_body #post_animal_dados h1:before {
   position: absolute;
   content: "";
-  left: -10px;
-  bottom: 5px;
+  left: -0.5rem;
+  bottom: 0.5rem;
   width: 70px;
   height: 20px;
   z-index: -1;
@@ -73,6 +118,11 @@
   width: 100%;
   height: 300px;
   overflow-y: scroll;
+}
+@media (max-width: 700px) {
+  #post #post_body #container_comentarios {
+    height: 100px;
+  }
 }
 #post #post_body #container_comentarios p {
   margin-bottom: 3%;
@@ -107,25 +157,13 @@
 @keyframes show-post {
   100% {
     opacity: 1;
-    top: 50%;
+    transform: scale(1);
   }
 }
 @keyframes show-shadow-post {
   100% {
     opacity: 1;
   }
-}
-#post:before {
-  animation: show-shadow-post 300ms 200ms forwards;
-  opacity: 0;
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  content: "";
-  top: -50%;
-  left: -50%;
-  background: rgba(0, 0, 0, 0.32);
-  z-index: -1;
 }
 
 /*# sourceMappingURL=modalPostagem.css.map */

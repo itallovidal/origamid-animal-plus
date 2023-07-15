@@ -5,17 +5,31 @@
   display: flex;
   justify-content: center;
   height: 100px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  z-index:  15;
 
     picture img{
       width: 30px;
       height: 30px;
+      transition: 200ms;
+    }
+    #container_icon img:hover, a:hover{
+      cursor: pointer;
+      transform: translateY(-5px);
     }
 
     #container_icon, nav{
       width: 25%;
       display: flex;
       align-items: center;
+
+      @media (max-width: 700px) {
+        width: 40%;
+      }
     }
 
     nav{

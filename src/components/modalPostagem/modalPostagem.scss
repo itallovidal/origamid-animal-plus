@@ -1,18 +1,32 @@
 @use '../../partials/_config' as *;
+#modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.27);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  animation: show-post 200ms forwards;
+}
 
 #post{
-  position: fixed;
-  top: calc(50% + 20px);
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 50vh;
-  z-index: 10;
+  width: 50%;
+  height: 50%;
   animation: show-post 200ms forwards;
+  transform: scale(.9);
   opacity: 0;
-
   display: grid;
   grid-template-columns: 2fr 1fr;
+
+  @media (max-width: 700px) {
+    width: 90%;
+    grid-template-columns: 1fr;
+    height: fit-content;
+  }
 
   #post_body{
     background: white;
@@ -30,6 +44,16 @@
 
       #post_autor:before{
         content: '@';
+      }
+
+      #btn_close{
+        margin-left: 10px;
+        cursor: pointer;
+        transition: 300ms;
+      }
+
+      #btn_close:hover{
+        color: $cor-1;
       }
     }
 
@@ -49,15 +73,7 @@
       }
 
       h1:before{
-        position: absolute;
-        content: '';
-        left: -10px;
-        bottom: 5px;
-        width: 70px;
-        height: 20px;
-        z-index: -1;
-        background: $cor-1;
-        border-radius: 3px;
+        @include detalhe_amarelo();
       }
 
       #espacador{
@@ -69,6 +85,10 @@
       width: 100%;
       height: 300px;
       overflow-y: scroll;
+
+      @media (max-width: 700px) {
+        height: 100px;
+      }
 
       p{
         margin-bottom: $esp-p;
@@ -111,7 +131,7 @@
 @keyframes show-post {
   100%{
     opacity: 1;
-    top: 50%;
+    transform: scale(1);
   }
 }
 
@@ -119,17 +139,4 @@
   100%{
     opacity: 1;
   }
-}
-
-#post:before{
-  animation: show-shadow-post 300ms 200ms forwards;
-  opacity: 0;
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  content: '';
-  top: -50%;
-  left: -50%;
-  background: rgba(0, 0, 0, 0.32);
-  z-index: -1;
 }

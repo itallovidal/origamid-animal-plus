@@ -1,0 +1,21 @@
+@use '../../partials/_config' as *;
+
+footer{
+  width: 100%;
+  height: 20vh;
+  background: $cor-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+
+  h3{
+    opacity: .3;
+  }
+
+  picture img{
+    height: 60px;
+    width: 60px;
+  }
+}
