@@ -9,8 +9,7 @@ function ModalPostagem() {
 
     React.useEffect(()=>{
         if(global.modal.total_comments >= 1){
-            getComents(global.modal.id).then((comentarios)=> console.log(comentarios))
-            // setComentarios(comentarios)
+            getComents(global.modal.id).then((comentarios)=> setComentarios(comentarios))
         }
     }, [])
 
@@ -38,8 +37,12 @@ function ModalPostagem() {
 
                     <div id={'container_comentarios'}>
                         {
-                            comentarios ?
-                                <p> <span className={'autor_comentario'}> pessoa </span>: <span>comentário </span></p> : null
+                            comentarios ? comentarios.map((comentario)=>{
+                                return <p key={comentario.id}>
+                                            <span className={'autor_comentario'}> {comentario.autor} </span>:
+                                            <span> {comentario.conteudo} </span>
+                                        </p>
+                                }) : null
                         }
                     </div>
                     

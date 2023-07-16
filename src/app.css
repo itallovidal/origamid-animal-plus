@@ -36,6 +36,7 @@ main article {
   max-width: 1000px;
   width: 90%;
   margin: 0 auto;
+  animation: showing 500ms forwards;
 }
 
 @keyframes showing {
