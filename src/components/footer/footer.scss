@@ -10,6 +10,10 @@ footer{
   text-align: center;
   gap: 10px;
 
+  @media (max-width: 700px) {
+    height: initial;
+    padding: 30px;
+  }
   h3{
     opacity: .3;
   }
