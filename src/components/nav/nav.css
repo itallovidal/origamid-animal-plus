@@ -32,6 +32,12 @@
   transform: translateY(-5px);
 }
 
+@keyframes showing {
+  100% {
+    transform: initial;
+    opacity: initial;
+  }
+}
 #container_nav {
   margin: 0 auto;
   display: flex;
@@ -71,6 +77,11 @@
 }
 #container_nav nav a:hover {
   background: #ffc400;
+}
+
+.show {
+  opacity: 0;
+  animation: showing 500ms forwards;
 }
 
 /*# sourceMappingURL=nav.css.map */

@@ -32,7 +32,14 @@
   transform: translateY(-5px);
 }
 
+@keyframes showing {
+  100% {
+    transform: initial;
+    opacity: initial;
+  }
+}
 #container_cadastro {
+  padding-top: 0;
   margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -104,6 +111,13 @@
   #container_cadastro .cadastro.btn {
     margin-bottom: 8%;
   }
+}
+
+.error, #user404 {
+  color: red;
+  margin-block: 10px;
+  opacity: 0;
+  animation: showing 500ms forwards;
 }
 
 /*# sourceMappingURL=login.css.map */

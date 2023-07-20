@@ -32,6 +32,12 @@
   transform: translateY(-5px);
 }
 
+@keyframes showing {
+  100% {
+    transform: initial;
+    opacity: initial;
+  }
+}
 #modal {
   position: fixed;
   top: 0;

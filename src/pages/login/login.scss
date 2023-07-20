@@ -1,6 +1,7 @@
 @use '../../partials/_config' as *;
 
 #container_cadastro{
+  padding-top: 0;
   margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -74,4 +75,11 @@
       margin-bottom: $esp-g;
     }
   }
+}
+
+.error, #user404{
+  color: red;
+  margin-block: 10px;
+  opacity: 0;
+  animation: showing 500ms forwards;
 }

@@ -38,28 +38,5 @@
     opacity: initial;
   }
 }
-footer {
-  width: 100%;
-  height: 20vh;
-  background: #ffc400;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
-}
-@media (max-width: 700px) {
-  footer {
-    height: initial;
-    padding: 30px;
-  }
-}
-footer h3 {
-  opacity: 0.3;
-}
-footer picture img {
-  height: 60px;
-  width: 60px;
-}
 
-/*# sourceMappingURL=footer.css.map */
+/*# sourceMappingURL=LoginForm.css.map */

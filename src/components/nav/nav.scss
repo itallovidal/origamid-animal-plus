@@ -44,3 +44,8 @@
       }
     }
 }
+
+.show{
+  opacity: 0;
+  animation: showing 500ms forwards;
+}

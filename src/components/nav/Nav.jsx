@@ -1,10 +1,25 @@
 import icon from '../../assets/icon-animals.png'
-import {Link, useNavigate} from "react-router-dom";
-import perfil from '../../assets/perfil.png'
+import {useNavigate} from "react-router-dom";
 import './nav.css'
-
+import React from "react";
+import {GlobalStorage} from "../../App.jsx";
+import UserLogged from "./UserLogged.jsx";
+import UserUnlogged from "./UserUnlogged.jsx";
 function Nav() {
+    const [isLogged, setIsLogged ] = React.useState(false)
+    const global = React.useContext(GlobalStorage)
     const navigate = useNavigate()
+
+    React.useEffect(()=>{
+        if(global.user.id){
+            setIsLogged(prevState => !prevState)
+        }
+
+    }, [global.user.id])
+
+    console.log(global.user.id)
+    console.log(isLogged)
+
     return (
         <div id={'container_nav'}>
                 <picture id={'container_icon'}>
@@ -12,10 +27,7 @@ function Nav() {
                 </picture>
 
                 <nav>
-                    <Link to={'/login'}> Login / Registro  </Link>
-                    <picture id={'container_img_perfil'}>
-                        <img src={perfil} alt=""/>
-                    </picture>
+                    { isLogged === true ? <UserLogged/> : <UserUnlogged/>}
                 </nav>
         </div>
     );
