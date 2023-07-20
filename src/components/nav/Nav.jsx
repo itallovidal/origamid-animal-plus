@@ -15,10 +15,11 @@ function Nav() {
             setIsLogged(prevState => !prevState)
         }
 
-    }, [global.user.id])
+        if(isLogged)
+            setIsLogged(false)
 
-    console.log(global.user.id)
-    console.log(isLogged)
+    }, [global.user])
+
 
     return (
         <div id={'container_nav'}>

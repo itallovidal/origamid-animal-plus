@@ -5,8 +5,8 @@ import perfil from "../../assets/perfil.png";
 function UserLogged() {
     return (
         <>
-            <Link className={'show'} to={'/login'}> Sair
-                <i style={{marginLeft: `10px`}} className="fa-solid fa-arrow-right-to-bracket"></i>
+            <Link className={'show'} to={'/conta'}> Conta
+                <i style={{marginLeft: `10px`}} className="fa-regular fa-id-card"></i>
             </Link>
 
         </>

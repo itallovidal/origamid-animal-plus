@@ -4,17 +4,26 @@ import {getPosts} from "../../ utilities/getPosts.jsx";
 import ModalPostagem from "../../components/modalPostagem/modalPostagem.jsx";
 import {GlobalStorage} from "../../App.jsx";
 import ContainerPostagens from "./components/ContainerPostagens.jsx";
-let page
+// let page
+// // window.addEventListener('scroll', showMore)
+// function showMore() {
+//     const main = document.querySelector('main')
+//     const endpoint = main.getBoundingClientRect().bottom
+//     if(endpoint < screen.height){
+//         removeEventListener('scroll', showMore)
+//         showPosts()
+//     }
+// }
+
 
 function Home() {
+    const global = React.useContext(GlobalStorage)
     const [posts, setPosts] = React.useState([])
     const [end, setEnd] = React.useState(false)
-    const global = React.useContext(GlobalStorage)
-    window.addEventListener('scroll', showMore)
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
     function showPosts(){
-        page++
-        getPosts(page).then((posts)=>{
+        getPosts().then((posts)=>{
             if(posts.length >= 1){
                 setPosts((prevPosts) => [...prevPosts, ...posts])
             }
@@ -26,19 +35,10 @@ function Home() {
 
 
     React.useEffect(()=>{
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        page = 0
         showPosts()
     }, [])
 
-    function showMore() {
-        const main = document.querySelector('main')
-        const endpoint = main.getBoundingClientRect().bottom
-        if(endpoint < screen.height){
-            removeEventListener('scroll', showMore)
-            showPosts()
-        }
-    }
+
 
 
     return (

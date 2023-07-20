@@ -9,8 +9,12 @@ const types = {
 
 function useForm(type) {
     function validate(value){
-        if(value.length <= 2)
+        if(type === 'number' && value <= 1 )
+            return 'Selecione um valor maior que 1'
+
+        if(type === 'text' && value.length <= 2)
             return 'Mínimo de 2 caracteres.'
+
         if(type && types[type]) {
             if(value && types[type].regex.test(value)){
                 return true

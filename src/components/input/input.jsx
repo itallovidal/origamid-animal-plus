@@ -12,6 +12,10 @@ function Input({type, id, text, placeholder, setState}) {
         if(typeof data === "boolean"){
             setError(null)
             setState((prevState)=>{
+                if(type === 'file'){
+                    return {...prevState, [id]: target.files[0]}
+                }
+
                 return {...prevState, [id]: target.value}
             })
         }
@@ -26,7 +30,11 @@ function Input({type, id, text, placeholder, setState}) {
     return (
         <div className={'container_input'}>
             <label htmlFor={id}>{text}</label>
-            <input onBlur={attState} placeholder={placeholder} type={type} id={id}/>
+            {type === 'file'
+                ? <input onChange={attState} placeholder={placeholder} type={type} id={id}/>
+                : <input onBlur={attState} placeholder={placeholder} type={type} id={id}/>
+            }
+
 
             {error && <p className={'error'}>{error}</p>}
         </div>

@@ -42,7 +42,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 20;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.27);
@@ -66,6 +66,9 @@
     width: 90%;
     grid-template-columns: 1fr;
     height: fit-content;
+  }
+  #post picture {
+    height: 200px;
   }
 }
 #post #post_body {
@@ -145,13 +148,13 @@
   margin-top: 5%;
 }
 #post #post_body #container_input #btn_submit {
-  width: 18%;
+  width: 25%;
   border: none;
   outline: none;
   background: none;
   cursor: pointer;
 }
-#post #post_body #container_input #btn_submit img {
+#post #post_body #container_input #btn_submit svg, #post #post_body #container_input #btn_submit g {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -159,7 +162,11 @@
 #post #post_body #container_input textarea {
   width: 80%;
   outline: none;
-  padding: 3%;
+  padding: 5%;
+  border-radius: 8px;
+  background: #F0F0F0;
+  border: none;
+  resize: none;
 }
 
 @keyframes show-post {
@@ -171,6 +178,16 @@
 @keyframes show-shadow-post {
   100% {
     opacity: 1;
+  }
+}
+.loading-comment {
+  animation: loading_comment 1000ms infinite;
+}
+
+@keyframes loading_comment {
+  50% {
+    transform: scale(1.02);
+    fill: #ffc400;
   }
 }
 
