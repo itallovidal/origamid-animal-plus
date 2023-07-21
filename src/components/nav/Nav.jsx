@@ -1,34 +1,27 @@
-import icon from '../../assets/icon-animals.png'
-import {useNavigate} from "react-router-dom";
-import './nav.css'
 import React from "react";
-import {GlobalStorage} from "../../App.jsx";
+import './nav.css'
+import icon from '../../assets/icon-animals.png'
+import {Link} from "react-router-dom";
 import UserLogged from "./UserLogged.jsx";
 import UserUnlogged from "./UserUnlogged.jsx";
+import {Storage} from "../../context-hooks/GlobalStorage.jsx";
 function Nav() {
-    const [isLogged, setIsLogged ] = React.useState(false)
-    const global = React.useContext(GlobalStorage)
-    const navigate = useNavigate()
-
-    React.useEffect(()=>{
-        if(global.user.id){
-            setIsLogged(prevState => !prevState)
-        }
-
-        if(isLogged)
-            setIsLogged(false)
-
-    }, [global.user])
-
-
+    const storage = React.useContext(Storage)
+    console.log(storage)
     return (
         <div id={'container_nav'}>
                 <picture id={'container_icon'}>
-                    <img onClick={()=> navigate('/')} src={icon} alt=""/>
+                    <Link to={'/'}>
+                        <img  src={icon} alt=""/>
+                    </Link>
                 </picture>
 
                 <nav>
-                    { isLogged === true ? <UserLogged/> : <UserUnlogged/>}
+                    { storage.isLogged
+                        ? <UserLogged/>
+                        : storage.isLogged !== null
+                        ? <UserUnlogged/>
+                        : null }
                 </nav>
         </div>
     );

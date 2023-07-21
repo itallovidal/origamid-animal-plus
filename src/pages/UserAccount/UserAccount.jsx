@@ -1,22 +1,23 @@
 import React from 'react';
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import './userAccount.css'
-import {GlobalStorage} from "../../App.jsx";
+import {Storage} from "../../context-hooks/GlobalStorage.jsx";
 
 function UserAccount() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const navigate = useNavigate()
-    const global = React.useContext(GlobalStorage)
+    const storage = React.useContext(Storage)
 
     function logout(){
         console.log('a')
         localStorage.removeItem('userToken')
-        global.setUser({
+        storage.setUser({
             id: null,
             username: null,
             nome: null,
             email: null,
         })
+        storage.setIsLogged(false)
         navigate('/login')
     }
 
@@ -24,7 +25,6 @@ function UserAccount() {
     return (
         <main id={'main_conta'}>
             <Outlet/>
-
 
             <nav id={'nav_conta'} >
                 {/* listagem */}

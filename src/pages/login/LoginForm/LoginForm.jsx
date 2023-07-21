@@ -1,50 +1,35 @@
 import React from 'react';
 import Input from "../../../components/input/input.jsx";
 import {Link, useNavigate} from "react-router-dom";
-import {path, createToken} from "../../../ utilities/fetch.jsx";
+import {Storage} from "../../../context-hooks/GlobalStorage.jsx";
+import {getUser, userLogin} from "../../../utilities/API.jsx";
 import Loading from "../../../components/loading/Loading.jsx";
-import {getUser} from "../../../ utilities/getUser.jsx";
-import {GlobalStorage} from "../../../App.jsx";
 
 function LoginForm() {
-    const global = React.useContext(GlobalStorage)
+    const storage = React.useContext(Storage)
     const navigate = useNavigate()
     const [error, setError] = React.useState(null)
     const [loading, setLoading] = React.useState(false)
-    const [login, setLogin] = React.useState({
+    const [loginData, setLoginData] = React.useState({
         username: null,
         password: null
     })
 
-    async function userLogin(e){
+    async function login(e){
         e.preventDefault()
-        if(login.username && login.password){
+        if(loginData.username && loginData.password){
             setLoading(true)
 
             try {
-                const response = await fetch(path + createToken, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: login.username,
-                        password: login.password
-                    })
-                })
+                const response = await userLogin(loginData.username, loginData.password)
 
-
-                if(response.status !== 200){
-                    setLoading(false)
+                if(response){
+                    storage.setIsLogged(null)
+                    navigate('/conta')
+                }
+                else{
                     throw new Error
                 }
-
-                const body = await response.json()
-                localStorage.setItem('userToken', body.token)
-                await getUser(body.token).then((response)=>{
-                    global.setUser({...response})
-                })
-                navigate('/conta')
             }
             catch (e){
                 setError(true)
@@ -58,11 +43,11 @@ function LoginForm() {
     return (
         <article id={'container_formLogin'}>
             { loading && <Loading/>}
-            <form action="" onSubmit={userLogin}>
+            <form action="" onSubmit={login}>
                 <h1>Login</h1>
 
-                <Input setState={setLogin} placeholder={'Insira seu nome..'} type={'text'} id={'username'} text={'Nome'}/>
-                <Input setState={setLogin} placeholder={'Insira sua senha..'} type={'password'} id={'password'} text={'Senha'}/>
+                <Input setState={setLoginData} placeholder={'Insira seu nome..'} type={'text'} id={'username'} text={'Nome'}/>
+                <Input setState={setLoginData} placeholder={'Insira sua senha..'} type={'password'} id={'password'} text={'Senha'}/>
 
                 <button type={'submit'} className={'btn'}>Entrar</button>
 

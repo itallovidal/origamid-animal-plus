@@ -1,20 +1,17 @@
 import './modalPostagem.css'
-import submit from '../../assets/icon_comment.svg'
 import React from "react";
-import {GlobalStorage} from "../../App.jsx";
-import {getComents} from "../../ utilities/getComents.jsx";
-import {postComment} from "../../ utilities/postComment.jsx";
+import {getComents, postComment} from "../../utilities/API.jsx";
+import {Storage} from "../../context-hooks/GlobalStorage.jsx";
 
 
 
 function ModalPostagem() {
-    const global = React.useContext(GlobalStorage)
+    const storage = React.useContext(Storage)
     const [comentarios, setComentarios] = React.useState(null)
     const btn_submit = React.useRef()
-    const [loading_comment, setLoading_Comment] = React.useState(false)
 
     React.useEffect(()=>{
-        getComents(global.modal.id).then((comentarios)=> setComentarios(comentarios))
+        getComents(storage.modal.id).then((comentarios)=> setComentarios(comentarios))
     }, [comentarios])
 
     function handleComment(e){
@@ -25,15 +22,13 @@ function ModalPostagem() {
         if(comment.length > 3){
             btn_submit.current.disabled = true
             btn_submit.current.classList.toggle('loading-comment')
-            setLoading_Comment(true)
 
-            postComment(global.modal.id, comment).then((res)=>{
+            postComment(storage.modal.id, comment).then((res)=>{
                 if(res){
-                    getComents(global.modal.id).then((comentarios)=> {
+                    getComents(storage.modal.id).then((comentarios)=> {
                         textArea.value = ''
                         setComentarios(comentarios)
                         btn_submit.current.classList.toggle('loading-comment')
-                        setLoading_Comment(false)
                     })
                 }
 
@@ -49,21 +44,21 @@ function ModalPostagem() {
         <div  id={'modal'}>
             <div id={'post'}>
                 <picture>
-                    <img src={global.modal.src} alt=""/>
+                    <img src={storage.modal.src} alt=""/>
                 </picture>
 
                 <div id={'post_body'}>
                     <div id={'post_dados_postagem'}>
-                        <p id={'post_autor'}>{global.modal.author}</p>
-                        <p>  <i className="fa-solid fa-eye"></i> <span id={'post_watches'}>{global.modal.acessos}</span>  <i id={'btn_close'} onClick={()=> global.setModal(null)} className="fa-solid fa-rectangle-xmark"></i> </p>
+                        <p id={'post_autor'}>{storage.modal.author}</p>
+                        <p>  <i className="fa-solid fa-eye"></i> <span id={'post_watches'}>{storage.modal.acessos}</span>  <i id={'btn_close'} onClick={()=> storage.setModal(null)} className="fa-solid fa-rectangle-xmark"></i> </p>
 
                     </div>
 
                     <div id={'post_animal_dados'}>
-                        <h1>{global.modal.title}</h1>
-                        <span id={'kg'}>{global.modal.peso} kg </span>
+                        <h1>{storage.modal.title}</h1>
+                        <span id={'kg'}>{storage.modal.peso} kg </span>
                         <span id={'espacador'}>{' | '}</span>
-                        <span id={'idade'}> {global.modal.idade} anos </span>
+                        <span id={'idade'}> {storage.modal.idade} anos </span>
                     </div>
 
 
@@ -77,8 +72,8 @@ function ModalPostagem() {
                                 }) : null
                         }
                     </div>
-                    
-                    {global.user.id ?
+
+                    {storage.isLogged ?
                     <form id={'container_input'} onSubmit={handleComment}>
                         <textarea id={'textarea_comment'} placeholder={'Comentário fofinho..'} rows="3"></textarea>
                         <button ref={btn_submit} type={'submit'} id={'btn_submit'}>

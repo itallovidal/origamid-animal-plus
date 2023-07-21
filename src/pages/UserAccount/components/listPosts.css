@@ -1,0 +1,8 @@
+#container_userPosts {
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+}
+
+/*# sourceMappingURL=listPosts.css.map */

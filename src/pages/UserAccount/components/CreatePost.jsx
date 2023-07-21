@@ -1,9 +1,9 @@
 import React from 'react';
 import Input from "../../../components/input/input.jsx";
 import './createPost.css'
-import {sendPost} from "../../../ utilities/sendPost.jsx";
 import Loading from "../../../components/loading/Loading.jsx";
 import {useNavigate} from "react-router-dom";
+import {sendPost} from "../../../utilities/API.jsx";
 
 function CreatePost() {
     const navigate = useNavigate()

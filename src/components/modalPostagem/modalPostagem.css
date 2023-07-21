@@ -43,8 +43,8 @@
   top: 0;
   left: 0;
   z-index: 20;
-  width: 100vw;
-  height: 100vh;
+  width: min(100vw, 100%);
+  height: min(100%, 100vh);
   background: rgba(0, 0, 0, 0.27);
   display: grid;
   place-items: center;
@@ -53,7 +53,7 @@
 }
 
 #post {
-  width: 50%;
+  width: max(50%, 900px);
   height: 50%;
   animation: show-post 200ms forwards;
   transform: scale(0.9);
@@ -61,11 +61,13 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
+#post picture {
+  height: 500px;
+}
 @media (max-width: 700px) {
   #post {
     width: 90%;
     grid-template-columns: 1fr;
-    height: fit-content;
   }
   #post picture {
     height: 200px;

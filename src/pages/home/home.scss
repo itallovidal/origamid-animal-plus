@@ -35,47 +35,6 @@
       }
     }
 
-    picture{
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      height: 100%;
-
-      p{
-        position: absolute;
-        z-index: 2;
-        top: 110%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: 100ms 200ms;
-      }
-    }
-
-    picture:before{
-      opacity: 0;
-      z-index: 1;
-      position: absolute;
-      content: '';
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-      background: rgba(0, 0, 0, 0.1);
-      transition: 100ms;
-        cursor: pointer;
-    }
-
-    picture:hover:before{
-      opacity: 1;
-    }
-
-    picture:hover p{
-      background: $cor-1;
-      padding: $esp-p;
-      border-radius: 8px;
-      top: 50%;
-      cursor: pointer;
-    }
   }
 
   #semPostagens{
