@@ -1,7 +1,7 @@
 @use '../../partials/_config' as *;
 #modal{
   position: fixed;
-  top: -60px;
+  top: -40px;
   left: 0;
   z-index: 20;
   width: min(100vw, 100%);
@@ -15,7 +15,7 @@
 
 #post{
   width: max(50%, 900px);
-  height: 50%;
+  max-height: 500px;
   animation: show-post 200ms forwards;
   transform: scale(.9);
   opacity: 0;
@@ -24,27 +24,24 @@
 
   @media (max-width: 700px) {
     width: calc(100% - 15px);
-    height: 550px;
+    height: 600px;
+    max-height: 800px;
   }
-
 
   picture{
-    height: 100%;
+    max-height: 500px;
   }
+
   @media (max-width: 700px) {
     width: 90%;
     grid-template-columns: 1fr;
     grid-template-rows: 200px auto;
-
-    picture{
-      height: 200px;
-    }
   }
 
   #post_body{
     background: white;
     display: flex;
-    padding: $esp-g;
+    padding: 20px;
     align-items: center;
     flex-direction: column;
     justify-content: start;
@@ -98,10 +95,6 @@
       width: 100%;
       height: 100%;
       overflow-y: scroll;
-
-      @media (max-width: 700px) {
-        height: 100px;
-      }
 
       p{
         margin-bottom: $esp-p;
