@@ -1,11 +1,11 @@
 @use '../../partials/_config' as *;
 #modal{
   position: fixed;
-  top: 0;
+  top: -60px;
   left: 0;
   z-index: 20;
   width: min(100vw, 100%);
-  height: min(100%, 100vh);
+  height: calc( min(100%, 100vh) + 100px);
   background: rgba(0, 0, 0, 0.27);
   display: grid;
   place-items: center;
@@ -22,12 +22,19 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
 
+  @media (max-width: 700px) {
+    width: calc(100% - 15px);
+    height: 550px;
+  }
+
+
   picture{
     height: 100%;
   }
   @media (max-width: 700px) {
     width: 90%;
     grid-template-columns: 1fr;
+    grid-template-rows: 200px auto;
 
     picture{
       height: 200px;
