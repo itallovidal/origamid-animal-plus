@@ -7,7 +7,6 @@ import UserUnlogged from "./UserUnlogged.jsx";
 import {Storage} from "../../context-hooks/GlobalStorage.jsx";
 function Nav() {
     const storage = React.useContext(Storage)
-    console.log(storage)
     return (
         <div id={'container_nav'}>
                 <picture id={'container_icon'}>

@@ -1,11 +1,13 @@
 import React from 'react';
 import Input from "../../../components/input/input.jsx";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import {Storage} from "../../../context-hooks/GlobalStorage.jsx";
-import {getUser, userLogin} from "../../../utilities/API.jsx";
+import {userLogin} from "../../../utilities/API.jsx";
 import Loading from "../../../components/loading/Loading.jsx";
 
 function LoginForm() {
+    const {boasVindas} = useOutletContext()
+    console.log(boasVindas)
     const storage = React.useContext(Storage)
     const navigate = useNavigate()
     const [error, setError] = React.useState(null)
@@ -14,6 +16,7 @@ function LoginForm() {
         username: null,
         password: null
     })
+
 
     async function login(e){
         e.preventDefault()
@@ -41,10 +44,12 @@ function LoginForm() {
     }
 
     return (
-        <article id={'container_formLogin'}>
+        <article id={'container_formLogin'} className={'show'}>
             { loading && <Loading/>}
             <form action="" onSubmit={login}>
-                <h1>Login</h1>
+                {boasVindas ? <h1>Bem vindo!</h1> : <h1>Login</h1>}
+
+                {boasVindas && <p> Conta criada com sucesso! Realize o login para continuar.</p>}
 
                 <Input setState={setLoginData} placeholder={'Insira seu nome..'} type={'text'} id={'username'} text={'Nome'}/>
                 <Input setState={setLoginData} placeholder={'Insira sua senha..'} type={'password'} id={'password'} text={'Senha'}/>

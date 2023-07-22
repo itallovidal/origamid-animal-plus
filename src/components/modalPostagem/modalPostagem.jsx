@@ -1,6 +1,6 @@
 import './modalPostagem.css'
 import React from "react";
-import {getComents, postComment} from "../../utilities/API.jsx";
+import {getComents, sendComment} from "../../utilities/API.jsx";
 import {Storage} from "../../context-hooks/GlobalStorage.jsx";
 
 
@@ -23,7 +23,7 @@ function ModalPostagem() {
             btn_submit.current.disabled = true
             btn_submit.current.classList.toggle('loading-comment')
 
-            postComment(storage.modal.id, comment).then((res)=>{
+            sendComment(storage.modal.id, comment).then((res)=>{
                 if(res){
                     getComents(storage.modal.id).then((comentarios)=> {
                         textArea.value = ''

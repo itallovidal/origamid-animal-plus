@@ -78,7 +78,7 @@
   justify-content: end;
 }
 #main_conta #nav_conta a {
-  padding: 3%;
+  padding: 15px;
   background: #F0F0F0;
   margin-inline: 3%;
   cursor: pointer;

@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: repeat(3, 200px);
   grid-template-rows: repeat(3, 200px);
+  gap: 10px;
 }
 
 /*# sourceMappingURL=listPosts.css.map */

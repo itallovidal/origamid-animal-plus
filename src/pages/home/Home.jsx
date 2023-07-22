@@ -4,31 +4,49 @@ import ModalPostagem from "../../components/modalPostagem/modalPostagem.jsx";
 import {getPosts} from "../../utilities/API.jsx";
 import CardPostagem from "./components/cardPostagem.jsx";
 import {Storage} from "../../context-hooks/GlobalStorage.jsx";
+import ContainerCard from "./components/ContainerCard.jsx";
 
 
+let count = 1
 
 function Home() {
     const storage = React.useContext(Storage)
-    const [posts, setPosts] = React.useState([])
+    const [groupedPosts, setGroupedPosts] = React.useState([])
     const [end, setEnd] = React.useState(false)
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+
+    React.useEffect(()=>{
+        count = 1
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        showPosts()
+    }, [])
 
 
     function showPosts(){
-        getPosts().then((posts)=>{
+        getPosts(count).then((posts)=>{
+            count++
             if(posts.length > 0){
-                setPosts((prevPosts) => [...prevPosts, ...posts])
+                window.addEventListener('scroll', infiniteScroll)
+                setGroupedPosts((prevPosts) => [...prevPosts, posts])
+
             }
             else{
+                console.log('sem mais postagens')
                 setEnd(true)
             }
         })
     }
 
-
-    React.useEffect(()=>{
-        showPosts()
-    }, [])
+    function infiniteScroll(){
+        const footer = document.querySelector('footer')
+        const screenHeight = window.screen.height
+        const distTop = Math.round(footer.getBoundingClientRect().top)
+        if(distTop < screenHeight){
+            console.log('carregando postagem')
+            window.removeEventListener('scroll', infiniteScroll)
+            showPosts()
+        }
+    }
 
 
 
@@ -36,27 +54,14 @@ function Home() {
         <>
             {storage.modal ? <ModalPostagem id={'/'}/> : null}
             <main id={'container_home'}>
-                {posts.length && (
-                    <article >
-                        <CardPostagem dados={posts[0]}/>
-                        <CardPostagem dados={posts[1]}/>
-                        <CardPostagem dados={posts[2]}/>
-                        <CardPostagem dados={posts[3]}/>
-                        <CardPostagem dados={posts[4]}/>
-                        <CardPostagem dados={posts[5]}/>
-                    </article>
+                {groupedPosts && (
+                    groupedPosts.map((post,i)=> <ContainerCard key={i} postagens={post}/>)
                 )}
 
-                {end && <p id={'semPostagens'}>Sem mais postagens.</p>}
+                {end && <p id={'semPostagens'} className={'show'}>Sem mais postagens.</p>}
             </main>
         </>
     );
 }
 
 export default Home;
-
-// {/*{*/}
-// {/*    posts.map((item, index)=>{*/}
-// {/*        return index % 6 === 0 ? posts.slice(index, index + 6) : ''*/}
-// {/*    }).filter((item)=> item !== '').map((post, i)=> <ContainerPostagens key={i} posts={post}/>)*/}
-// {/*}*/}

@@ -4,6 +4,7 @@ import React from "react";
 import {Outlet} from "react-router-dom";
 
 function Login() {
+    const [boasVindas, setboasVindas] = React.useState(false)
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
 
@@ -13,7 +14,7 @@ function Login() {
                 <img src={perfil} alt=""/>
             </picture>
 
-            <Outlet/>
+            <Outlet context={{boasVindas, setboasVindas}}/>
         </main>
     );
 }
