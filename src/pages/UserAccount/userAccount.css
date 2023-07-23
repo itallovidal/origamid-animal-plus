@@ -48,9 +48,21 @@
   width: 100%;
   padding-inline: 25%;
 }
+@media (max-width: 700px) {
+  #main_conta {
+    flex-direction: column-reverse;
+    padding-inline: 5%;
+    margin-bottom: 10%;
+  }
+}
 #main_conta article {
   width: 1000px;
   margin: 0 auto;
+}
+@media (max-width: 700px) {
+  #main_conta article {
+    width: 100%;
+  }
 }
 #main_conta article h1 {
   margin-top: 0;
@@ -76,6 +88,11 @@
   display: flex;
   align-items: center;
   justify-content: end;
+}
+@media (max-width: 700px) {
+  #main_conta #nav_conta {
+    width: 100%;
+  }
 }
 #main_conta #nav_conta a {
   padding: 15px;

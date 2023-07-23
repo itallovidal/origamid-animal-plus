@@ -57,6 +57,11 @@
   background: white;
   border-radius: 10px;
 }
+@media (max-width: 700px) {
+  #wrapper_loading #container_loading {
+    width: 85%;
+  }
+}
 #wrapper_loading #container_loading img {
   width: 100px;
 }
