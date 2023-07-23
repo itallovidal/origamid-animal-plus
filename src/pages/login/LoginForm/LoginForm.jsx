@@ -56,7 +56,7 @@ function LoginForm() {
 
                 <button type={'submit'} className={'btn'}>Entrar</button>
 
-                <Link to={'/'}>Perdeu sua <span>senha?</span> </Link>
+                {/*<Link to={'/'}>Perdeu sua <span>senha?</span> </Link>*/}
 
                 {error && <p id={'user404'}> Usuário não encontrado.</p>}
             </form>

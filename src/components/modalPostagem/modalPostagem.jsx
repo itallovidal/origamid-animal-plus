@@ -1,7 +1,8 @@
 import './modalPostagem.css'
 import React from "react";
-import {getComents, sendComment} from "../../utilities/API.jsx";
+import {deletePost, getComents, sendComment} from "../../utilities/API.jsx";
 import {Storage} from "../../context-hooks/GlobalStorage.jsx";
+import Loading from "../loading/Loading.jsx";
 
 
 
@@ -9,12 +10,27 @@ function ModalPostagem() {
     const storage = React.useContext(Storage)
     const [comentarios, setComentarios] = React.useState(null)
     const btn_submit = React.useRef()
+    const [deleting, setDeleting] = React.useState(false)
 
     React.useEffect(()=>{
-        getComents(storage.modal.id).then((comentarios)=> setComentarios(comentarios))
-    }, [comentarios])
+        console.log('carregou modal')
+        getComents(storage.modal.id)
+            .then((comentarios)=> setComentarios(comentarios))
+    }, [])
 
+
+    function handleDelete(){
+        setDeleting(true)
+        deletePost(storage.modal.id).then(res=>{
+            if(res)
+            {
+                setDeleting(false)
+                window.location.reload()
+            }
+        })
+    }
     function handleComment(e){
+        console.log('comentando..')
         e.preventDefault()
         const textArea = document.querySelector('#textarea_comment')
         const comment = textArea.value
@@ -29,6 +45,7 @@ function ModalPostagem() {
                         textArea.value = ''
                         setComentarios(comentarios)
                         btn_submit.current.classList.toggle('loading-comment')
+                        btn_submit.current.disabled = false
                     })
                 }
 
@@ -42,6 +59,7 @@ function ModalPostagem() {
 
     return (
         <div  id={'modal'}>
+            {deleting && <Loading msg={'deletando'}/>}
             <div id={'post'}>
                 <picture>
                     <img src={storage.modal.src} alt=""/>
@@ -49,8 +67,16 @@ function ModalPostagem() {
 
                 <div id={'post_body'}>
                     <div id={'post_dados_postagem'}>
-                        <p id={'post_autor'}>{storage.modal.author}</p>
-                        <p>  <i className="fa-solid fa-eye"></i> <span id={'post_watches'}>{storage.modal.acessos}</span>  <i id={'btn_close'} onClick={()=> storage.setModal(null)} className="fa-solid fa-rectangle-xmark"></i> </p>
+                        {storage.modal.author === storage.user.nome
+                            ? <p id={'del_post'} onClick={handleDelete}>Deletar</p>
+                            : <p id={'post_autor'}>{storage.modal.author} </p>}
+                        <p>
+                            <i className="fa-solid fa-eye"> </i>
+                                <span id={'post_watches'}>{storage.modal.acessos}</span>
+                            <i id={'btn_close'}
+                               onClick={()=> storage.setModal(null)}
+                               className="fa-solid fa-rectangle-xmark"></i>
+                        </p>
 
                     </div>
 

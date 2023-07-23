@@ -90,9 +90,21 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 }
 #post #post_body #post_dados_postagem #post_autor:before {
   content: "@";
+}
+#post #post_body #post_dados_postagem #del_post {
+  padding: 5px;
+  border: 1px solid #F0F0F0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 500ms;
+}
+#post #post_body #post_dados_postagem #del_post:hover {
+  background: #1E1E1E;
+  color: #ffc400;
 }
 #post #post_body #post_dados_postagem #btn_close {
   margin-left: 10px;

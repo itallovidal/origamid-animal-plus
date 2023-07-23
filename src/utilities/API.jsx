@@ -4,11 +4,12 @@
 
  const API_POST_COMMENT = `api/comment/`
 
- const API_POST = `api/photo`
+ const API_PHOTO_PATH = `api/photo`
 
  const API_USER = 'api/user'
 
  const GET_COMMENTS = 'api/comment/'
+
 
 export async function getComents(idPostagem) {
     const response = await fetch(API_PATH + GET_COMMENTS + idPostagem)
@@ -72,10 +73,10 @@ export async function sendPost(post) {
     Form.append('nome', post.nome)
 
 
-    const response = await fetch(API_PATH + API_POST, {
+    const response = await fetch(API_PATH + API_PHOTO_PATH, {
         method: 'POST',
         headers: {
-            Authorization: 'Bearer ' + token
+            Authorization: 'Bearer ' + token,
         },
         body: Form
     })
@@ -122,4 +123,17 @@ export async function userLogin(username, password){
     const body = await response.json()
     localStorage.setItem('userToken', body.token)
     return true
- }
+}
+
+export async function deletePost(id){
+    const token = localStorage.getItem('userToken')
+    const response = await fetch(API_PATH + API_PHOTO_PATH + '/' + id,  {
+        method: 'DELETE',
+        headers: {
+            Authorization: 'Bearer ' + token,
+        },
+    })
+
+    return response.status === 200
+
+}

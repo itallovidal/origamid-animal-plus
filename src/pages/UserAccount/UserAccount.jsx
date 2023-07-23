@@ -8,6 +8,7 @@ function UserAccount() {
     const navigate = useNavigate()
     const storage = React.useContext(Storage)
 
+
     function logout(){
         console.log('a')
         localStorage.removeItem('userToken')

@@ -50,10 +50,23 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-
+      align-items: center;
 
       #post_autor:before{
         content: '@';
+      }
+
+      #del_post{
+        padding: 5px;
+        border: 1px solid $cor-3;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: 500ms;
+
+        &:hover{
+          background: $cor-2;
+          color: $cor-1 ;
+        }
       }
 
       #btn_close{
